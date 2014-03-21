@@ -25,6 +25,10 @@
 #   Install pyzor?
 #   *Optional* (defaults to false)
 #
+# [*backports*]
+#   Install and pin from Debian Backports?
+#   *Optional* (defaults to false)
+#
 # === Examples
 #
 # include spamassassin
@@ -38,15 +42,17 @@
 # Copyright 2014 Frederik Wagner
 #
 class spamassassin (
-  $user  = 'debian-spamd',
-  $run_user = 'debian-spamd',
-  $razor = false,
-  $pyzor = false,
+  $user      = 'debian-spamd',
+  $run_user  = 'debian-spamd',
+  $razor     = false,
+  $pyzor     = false,
+  $backports = false,
 ) {
   validate_string($user)
   validate_string($run_user)
   validate_bool($razor)
   validate_bool($pyzor)
+  validate_bool($backports)
 
   contain spamassassin::install
   contain spamassassin::install_addons
